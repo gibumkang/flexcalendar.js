@@ -1,0 +1,164 @@
+$lightblue: #2B608D;
+$mediumblue: #076191;
+$red: #D0021B;
+
+@mixin marker($color, $opacity){
+    position: absolute;
+    font-size: 11px;
+    opacity: $opacity;
+    height: 10px;
+    max-width: 50px;
+    text-align: center;
+    top: 25px;
+    left: 50%;
+    transform: translate(-50%);
+    &:hover {
+        opacity: 1;
+        color: $color;
+    }
+}
+
+@mixin lateDateSelected {
+    background: $red;
+}
+
+@mixin selected {
+    background: $mediumblue;
+    color: #fff;
+    cursor: pointer;
+}
+
+.calendar-js {
+    background: #eee;
+    max-width: 375px;
+    padding: 20px;
+    font-family: Helvetica, sans-serif;
+    header {
+        display: flex;
+        padding-bottom: 10px;
+        justify-content: space-between;
+        h2 {
+            margin: 0;
+            color: #666;
+            text-align: center;
+            span {
+                font-size: .8em;
+                font-weight: 100;
+            }
+        }
+        button {
+            background: none;
+            border: none;
+            font-size: 1.25em;
+            color: #666;
+            cursor: pointer;
+        }
+    }
+    .calendar-wrapper {
+        border: 1px solid #ddd;
+        .weekdays {
+            color: #999;
+            display: flex;
+            font-weight: 100;
+            text-align: center;
+            background: #f5f5f5;
+            padding: 7px 7px 5px 7px;
+            div {
+                width: 50px;
+            }
+        }
+        .flex-row {
+            display: flex;
+            text-align: center;
+            padding: 12px 7px 0px 7px;
+            div {
+                width: 50px;
+                height: 45px;
+                padding-top: 10px;
+            }
+        }
+        .calendar-body {
+            font-weight: 100;
+            background: #fff;
+            min-height: 350px;
+            .flex-row {
+                .empty-node {
+                    height: 0px;
+                    padding-top: 0px;
+                }
+                .date-node {
+                    transition: all .15s ease-in-out;
+                    position: relative;
+                    &:hover {
+                        @include selected;
+                    }
+                    .todays-date {
+                        @include marker($lightblue, 1);
+                    }
+                    .due-date {
+                        @include marker($red, 1);
+                    }
+                    .late-payment {
+                        color: #fff;
+                        @include marker(#fff, 0);
+                    }
+                }
+                .eligible-date {
+                    &:hover {
+                        color: #fff;
+                    }
+                }
+                .late-date {
+                    &:hover {
+                        @include lateDateSelected;
+                    }
+                }
+                .late-date.selected {
+                    @include lateDateSelected;
+                }
+                .invalid-date {
+                    &:hover {
+                        background: none;
+                        cursor: default;
+                    }
+                }
+                .selected {
+                    @include selected;
+                    .due-date, .todays-date {
+                        color: #fff;
+                    }
+                    .late-payment {
+                        opacity: 1 !important;
+                    }
+                }
+            }
+        }
+    }
+    .message {
+        padding: 8px 0px;
+        font-size: 12px;
+        line-height: 18px;
+        color: $red;
+        text-align: center;
+        height: 40px;
+    }
+    .continue {
+        width: 100%;
+        color: #fff;
+        font-size: 15px;
+        border: none;
+        padding: 15px 0px;
+        border-radius: 3px;
+        cursor: pointer;
+        background: $mediumblue;
+        transition: all .25s ease-in-out;
+    }
+}
+
+.selected-date {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.white {
+    color: #fff !important;
+}

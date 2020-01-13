@@ -1,0 +1,24 @@
+{
+  "name": "gulp-bulma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-sass": "^4.0.2"
+  },
+  "dependencies": {
+    "bulma": "^0.8.0",
+    "bulma-extensions": "^6.2.7",
+    "cssnano": "^4.1.10",
+    "uglify": "^0.1.5"
+  }
+}
